@@ -25,3 +25,19 @@ fun Any?.println() = println(this)
 fun String.isNumeric(): Boolean {
     return this.all { char -> char.isDigit() }
 }
+
+inline fun <T> Iterable<T>.multiplyOf(selector: (T) -> Int): Int {
+    var multiply = 1
+    for (element in this) {
+        multiply *= selector(element)
+    }
+    return multiply
+}
+
+fun Map<Long, Long>.getOrSameValue(v: Long): Long {
+    if(!this.containsKey(v)) {
+        return v
+    }
+
+    return this[v]!!
+}
